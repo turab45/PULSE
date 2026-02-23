@@ -1,12 +1,7 @@
-from typing import TypedDict
+from typing import TypedDict, Annotated
+from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
 
-class BatsmanState(TypedDict):
-    runs: int
-    balls: int
-    fours: int
-    sixes: int
-    
-    strike_rate: float
-    boundary_per_ball: float
-    boundary_percentage: float
-    summary: str
+
+class ChatState(TypedDict):
+    messages: Annotated[list[BaseMessage], add_messages]
