@@ -1,16 +1,25 @@
 from graph import build_graph
+from langchain_core.messages import HumanMessage
 
 if __name__ == "__main__":
-    initial_state = {
-        "messages": [
-            {"role": "user", "content": "What are the symptoms of COVID-19?"}
-        ]
-        }
 
-    graph = build_graph()
 
-    final_state = graph.invoke(initial_state)
+    while True:
+
+        user_input = input("Type your message (or 'quit' to exit): ")
+        if user_input.strip().lower() in ["quit", "exit", "bye", "q"]:
+            break
+
+        graph = build_graph()
+
+        user_message = HumanMessage(content=user_input)
+
+        # Print the user message
+        user_message.pretty_print()
+
+        response = graph.invoke({"messages": [user_message]})
+
+        # Print the model response
+        response["messages"][-1].pretty_print()
     
-    for message in final_state["messages"]:
-        # use pretty print to display the messages
-        message.pretty_print()
+        
