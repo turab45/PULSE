@@ -23,7 +23,14 @@ if user_input:
     with st.chat_message("user"):
         st.markdown(user_input)
     
-    llm_response = build_graph().invoke({"messages": [HumanMessage(content=user_input)]}, config=CONFIG)
-    st.session_state["message_history"].append({"role": "assistant", "content": llm_response["messages"][-1].content})
+    # llm_response = build_graph().invoke({"messages": [HumanMessage(content=user_input)]}, config=CONFIG)
+    # st.session_state["message_history"].append({"role": "assistant", "content": llm_response["messages"][-1].content})
     with st.chat_message("assistant"):
-        st.markdown(llm_response["messages"][-1].content)
+        graph = build_graph()
+        llm_response = st.write_stream(
+            message_chunk.content for message_chunk, metadata in  graph.stream(
+                {"messages": [HumanMessage(content=user_input)]}, config=CONFIG, stream_mode="messages",
+            )
+        )
+
+        st.session_state["message_history"].append({"role": "assistant", "content": llm_response})
