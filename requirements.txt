@@ -23,6 +23,7 @@ frozenlist==1.8.0
 fsspec==2026.2.0
 gitdb==4.0.12
 GitPython==3.1.46
+groq==0.37.1
 h11==0.16.0
 hf-xet==1.2.0
 httpcore==1.0.9
@@ -46,9 +47,11 @@ langchain==1.2.10
 langchain-classic==1.0.1
 langchain-community==0.4.1
 langchain-core==1.2.13
+langchain-groq==1.1.2
 langchain-huggingface==1.2.0
 langchain-openai==1.1.10
 langchain-text-splitters==1.1.0
+langchain-xai==1.2.2
 langgraph==1.0.8
 langgraph-checkpoint==4.0.0
 langgraph-prebuilt==1.0.7
